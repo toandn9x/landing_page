@@ -150,9 +150,6 @@ $(document).ready(function(){
         load_ajax();
     })
     function load_ajax(){
-    	console.log($('#user_status').val());
-    	console.log($('#user_level').val());
-    	console.log($('#user_search').val());
       $.ajax({
           url : '{{ route('search_user') }}',
           type : 'get',
@@ -217,6 +214,7 @@ $('#user_delete').click(function(){
     listId += $(this).val() + ',';
   });
   listId = listId.substring(0, listId.length - 1);
+  console.log(listId);
   ajaxDeleteUser(listId);
 })
 </script>

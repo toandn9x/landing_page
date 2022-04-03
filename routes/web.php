@@ -35,6 +35,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('users/edit/{id}', [AdminController::class, 'editUser'])->name('edit_user');
     Route::post('users/edit', [AdminController::class, 'pEditUser'])->name('p_edit_user');
     Route::get('users/search', [AdminController::class, 'searchUser'])->name('search_user');
-    Route::get('users/delete', [AdminController::class, 'deleteUser'])->name('delete_user');
+    Route::post('users/delete', [AdminController::class, 'deleteUser'])->name('delete_user');
 
 });

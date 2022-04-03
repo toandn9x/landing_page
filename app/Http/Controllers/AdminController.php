@@ -107,18 +107,15 @@ class AdminController extends Controller
     public function searchUser(Request $request) {
         $key = $request->key;
         $output = '';
-        $users = DB::table('users');
-        if($request->status)
-            $users = $users->where('status', '=', 0);
-        if($request->role)
-            $users = $users->where('role', '=', $request->role);
-        if($key)
-            $users = $users->where(function ($query) use ($key) {
+        $users = DB::table('users')
+           ->where('status', 'LIKE', '%'.$request->status.'%')
+           ->where('role', 'LIKE', '%'.$request->role.'%')
+           ->where(function ($query) use ($key) {
                $query->where('name', 'LIKE', '%'.$key.'%')
                      ->orWhere('email', 'LIKE', '%'.$key.'%')
                      ->orWhere('created_at', 'LIKE', '%'.$key.'%');
-           });
-        $users = $users->get();
+           })
+           ->get();
         if ($users) {
             foreach ($users as $key => $user) {
                 $user->status == 1 ? $user->status = "✔ Đang hoạt động" : $user->status = "<span style='color:red'>✘ Huỷ kích hoạt</span>";
@@ -132,15 +129,16 @@ class AdminController extends Controller
                 <td>' . $user->role . '</td>
                 <td>' . $user->created_at . '</td>
                 <td>| 
-                    <a href="admin/edit/'.$user->id.'"><i class="fas fa-edit"></i></a> |
+                    <a href="admin/users/edit/'.$user->id.'"><i class="fas fa-edit"></i></a> |
                     <a href="javascript:void(0)" onclick=ajaxDeleteUser('.$user->id.')><i class="fas fa-trash"></i></a> | 
                     </td>
                 </tr>';
             }
             echo $output;
         }
+
     }
-    public function postDeleteUser(Request $request) {
+    public function deleteUser(Request $request) {
         $arrId = explode(",",$request->id);
         foreach ($arrId as $id) {
             if($id == '' || $id == NULL) {
