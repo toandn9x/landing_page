@@ -37,4 +37,20 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('users/search', [AdminController::class, 'searchUser'])->name('search_user');
     Route::post('users/delete', [AdminController::class, 'deleteUser'])->name('delete_user');
 
+    Route::get('menus', [AdminController::class, 'menus'])->name('menus');
+    Route::get('menus/add', [AdminController::class, 'addMenu'])->name('add_menu');
+    Route::post('menus/add', [AdminController::class, 'pAddMenu'])->name('p_add_menu');
+    Route::get('menus/edit/{id}', [AdminController::class, 'editMenu'])->name('edit_menu');
+    Route::post('menus/edit', [AdminController::class, 'pEditMenu'])->name('p_edit_menu');
+    Route::get('menus/search', [AdminController::class, 'searchMenu'])->name('search_menu');
+    Route::post('menus/delete', [AdminController::class, 'deleteMenu'])->name('delete_menu');
+
+    Route::get('contents', [AdminController::class, 'contents'])->name('contents');
+    Route::get('contents/add', [AdminController::class, 'addContent'])->name('add_content');
+    Route::post('contents/add', [AdminController::class, 'pAddContent'])->name('p_add_content');
+    Route::get('contents/edit/{id}', [AdminController::class, 'editContent'])->name('edit_content');
+    Route::post('contents/edit', [AdminController::class, 'pEditContent'])->name('p_edit_content');
+    Route::get('contents/search', [AdminController::class, 'searchContent'])->name('search_content');
+    Route::post('contents/delete', [AdminController::class, 'deleteContent'])->name('delete_content');
+
 });

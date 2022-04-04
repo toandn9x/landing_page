@@ -98,26 +98,26 @@
             <div class="col-md-8">  	
             	<ul class="pagination float-right">
             		{{-- Nguyên tắc : (currentPage - 1) * LIMIT --}}
-            		<li class="page-item"><a class="page-link" href="admin/ql-tai-khoan?page=1">First</a></li>
+            		<li class="page-item"><a class="page-link" href="admin/users?page=1">First</a></li>
             		{{-- nếu page hiện tại > page đầu thì hiện nút privew --}}
             		@if($users->currentPage() > 1)
-			    	        <li class="page-item"><a class="page-link" href="admin/ql-tai-khoan?page={{ $users->currentPage() - 1 }}">Previous</a></li>
+			    	        <li class="page-item"><a class="page-link" href="admin/users?page={{ $users->currentPage() - 1 }}">Previous</a></li>
 			          @endif
-			              <li class="page-item active"><a class="page-link" href="admin/ql-tai-khoan?page={{ $users->currentPage() }}">{{ $users->currentPage() }}</a></li>
+			              <li class="page-item active"><a class="page-link" href="admin/users?page={{ $users->currentPage() }}">{{ $users->currentPage() }}</a></li>
 			          @if($users->currentPage() < $users->lastPage())
-				            <li class="page-item"><a class="page-link" href="admin/ql-tai-khoan?page={{ $users->currentPage() + 1 }}">{{ $users->currentPage() + 1 }}</a></li>
+				            <li class="page-item"><a class="page-link" href="admin/users?page={{ $users->currentPage() + 1 }}">{{ $users->currentPage() + 1 }}</a></li>
                     @if($users->currentPage() < $users->lastPage() - 2)
-				            <li class="page-item"><a class="page-link" href="admin/ql-tai-khoan?page={{ $users->currentPage() + 2 }}">{{ $users->currentPage() + 2 }}</a></li>
+				            <li class="page-item"><a class="page-link" href="admin/users?page={{ $users->currentPage() + 2 }}">{{ $users->currentPage() + 2 }}</a></li>
                     @endif
                     @if($users->currentPage() < $users->lastPage() - 3)
-				            <li class="page-item"><a class="page-link" href="admin/ql-tai-khoan?page={{ $users->currentPage() + 3 }}">{{ $users->currentPage() + 3 }}</a></li>
+				            <li class="page-item"><a class="page-link" href="admin/users?page={{ $users->currentPage() + 3 }}">{{ $users->currentPage() + 3 }}</a></li>
                     @endif
 				        @endif
   							{{-- nếu page hiện tại < page cuối thì hiện nút next --}}
   							@if($users->currentPage() < $users->lastPage())
-  								  <li class="page-item"><a class="page-link" href="admin/ql-tai-khoan?page={{ $users->currentPage() + 1 }}">Next</a>
+  								  <li class="page-item"><a class="page-link" href="admin/users?page={{ $users->currentPage() + 1 }}">Next</a>
   							@endif
-			          <li class="page-item"><a class="page-link" href="admin/ql-tai-khoan?page={{ $users->lastPage() }}">Last</a></li>
+			          <li class="page-item"><a class="page-link" href="admin/users?page={{ $users->lastPage() }}">Last</a></li>
 			        </ul>
             </div>
       	  </div>

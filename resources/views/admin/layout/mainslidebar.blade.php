@@ -49,23 +49,30 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('menus') }}" class="nav-link">
                   <i class="fas fa-list"></i>
-                  <p>DS khách hàng</p>
+                  <p>QL menu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('contents') }}" class="nav-link">
                   <i class="fas fa-clipboard-list"></i>
-                  <p>DSDK nhận KM</p>
+                  <p>QL Nội Dung</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fas fa-cogs"></i>
-                  <p>Web setting</p>
+                  <p>Thông tin liên hệ</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-stream"></i>
+                  <p>Thông tin thành viên</p>
+                </a>
+              </li>
+
               {{-- <li class="nav-item">
                 <a href="pages/tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

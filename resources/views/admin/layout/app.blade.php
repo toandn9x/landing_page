@@ -33,7 +33,7 @@
   <!-- toastr -->
   <link rel="stylesheet" href="admin_lib/plugins/toastr/toastr.min.css">
   {{-- image view --}}
-  <link rel="stylesheet" href="lib/css/jquery.mtfpicviewer.css" />
+{{--  <link rel="stylesheet" href="lib/css/jquery.mtfpicviewer.css" />--}}
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -77,7 +77,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="admin_lib/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="admin_lib/dist/js/demo.js"></script>
+{{--<script src="admin_lib/dist/js/demo.js"></script>--}}
 <!-- jquery confirm -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <!-- toastr -->
@@ -85,7 +85,7 @@
 <!-- bs-custom-file-input -->
 <script src="admin_lib/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 {{-- image view --}}
-<script src="lib/js/jquery.mtfpicviewer.js"></script>
+{{--<script src="lib/js/jquery.mtfpicviewer.js"></script>--}}
 <script>
   $.ajaxSetup({
     headers: {
