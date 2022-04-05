@@ -103,7 +103,7 @@
                                                             class="fas fa-edit"></i></a> |
                                                 <a href="javascript:void(0)"
                                                    onclick="ajaxDeleteContent({{ $content->id }})"><i
-                                                            class="fas fa-trash"></i></a> |
+                                                            class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -259,6 +259,11 @@
             var win = window.open();
             win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("ul li:nth-child(4) > a").addClass("active");
+        });
     </script>
 @stop
 

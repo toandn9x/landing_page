@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Menus;
 use App\Models\Contents;
+use App\Models\News;
 
 
 class AdminController extends Controller
@@ -24,7 +25,7 @@ class AdminController extends Controller
                 return redirect()->route('index')->with('success','Đăng nhập thành công');
             }
             else {
-                redirect()->route('login')->with('err', 'Tài khoản Không có quyền truy cập');
+                return redirect()->route('login')->with('err', 'Tài khoản Không có quyền truy cập');
             }
         }
         else {
@@ -131,9 +132,9 @@ class AdminController extends Controller
                 <td>' . $user->status . '</td>
                 <td>' . $user->role . '</td>
                 <td>' . $user->created_at . '</td>
-                <td>| 
+                <td>
                     <a href="admin/users/edit/'.$user->id.'"><i class="fas fa-edit"></i></a> |
-                    <a href="javascript:void(0)" onclick=ajaxDeleteUser('.$user->id.')><i class="fas fa-trash"></i></a> | 
+                    <a href="javascript:void(0)" onclick=ajaxDeleteUser('.$user->id.')><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>';
             }
@@ -221,9 +222,9 @@ class AdminController extends Controller
                 <td>' . $menu->m_order . '</td>
                 <td>' . $menu->created_at . '</td>
                 <td>' . $menu->updated_at . '</td>
-                <td>| 
+                <td>
                     <a href="admin/menus/edit/'.$menu->id.'"><i class="fas fa-edit"></i></a> |
-                    <a href="javascript:void(0)" onclick=ajaxDeleteMenu('.$menu->id.')><i class="fas fa-trash"></i></a> | 
+                    <a href="javascript:void(0)" onclick=ajaxDeleteMenu('.$menu->id.')><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>';
             }
@@ -297,6 +298,7 @@ class AdminController extends Controller
 //            $extension = $file->extension();
             $content->img = base64_encode(file_get_contents($file->path()));
         }
+        if($request->delete == 1) $content->img = NULL;
         if(!$content->save()) {
             return redirect()->back()->with('err', 'Có lỗi, vui lòng thử lại');
         }
@@ -310,7 +312,7 @@ class AdminController extends Controller
             ->join('menus', 'menus.id', '=','contents.id_menu')
             ->select('contents.*', 'menus.name', 'menus.id as m_id')
             ->where('contents.status', 'LIKE', '%'.$request->status.'%')
-            ->where('id_menu', 'LIKE', '%'.$request->id_menu.'%')
+            ->where('contents.id_menu', 'LIKE', '%'.$request->id_menu.'%')
             ->where(function ($query) use ($key) {
                 $query->where('contents.description', 'LIKE', '%'.$key.'%')
                     ->orWhere('contents.content', 'LIKE', '%'.$key.'%')
@@ -325,7 +327,7 @@ class AdminController extends Controller
                 }
                 else $link = '';
                 $output .= '<tr>
-                <th scope="row"><input class="form-check-input" type="checkbox" value="'.$content->id.'" id="'.$content->id.'"></th>
+                <th scope="row"><input class="form-check-input" type="checkbox" value="'.$content->id.'" id="'.$content->id.'" style="margin-top: -5px"></th>
                 <th scope="row">' . ($key + 1) . '</th>
                 <td>' . $content->name . '</td>
                 <td>' . $link . '</td>
@@ -334,9 +336,9 @@ class AdminController extends Controller
                 <td>' . $content->status . '</td>
                 <td>' . $content->created_at . '</td>
                 <td>' . $content->updated_at . '</td>
-                <td>| 
+                <td>
                     <a href="admin/contents/edit/'.$content->id.'"><i class="fas fa-edit"></i></a> |
-                    <a href="javascript:void(0)" onclick=ajaxDeleteContent('.$content->id.')><i class="fas fa-trash"></i></a> | 
+                    <a href="javascript:void(0)" onclick=ajaxDeleteContent('.$content->id.')><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>';
             }
@@ -353,6 +355,105 @@ class AdminController extends Controller
             }
             $content = Contents::find($id);
             $content->delete();
+        }
+        return "success";
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function news() {
+        $news = DB::table('news')->orderBy('id', 'DESC')->paginate(50);
+        return view('admin.news', ['news' => $news]);
+    }
+    public function addNews() {
+        return view('admin.news_add');
+    }
+    public function pAddNews(Request $request) {
+        $news = new News;
+        $news->description          = $request->description;
+        $news->content          = $request->content;
+        $news->status          = $request->status;
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+//            $name = $file->getClientOriginalName();
+//            $extension = $file->extension();
+            $news->img = base64_encode(file_get_contents($file->path()));
+        }
+        if(!$news->save()) {
+            return redirect()->back()->with('err', 'Error');
+        }
+        return redirect()->back()->with('success', 'Success!');
+    }
+    public function editNews($id) {
+        $new = News::find($id);
+        if(isset($new)) {
+            return view('admin.news_edit', ['new' => $new]);
+        }
+        else return redirect()->back();
+
+    }
+    public function pEditNews(Request $request) {
+        $new = News::find($request->id);
+        $new->description      = $request->description;
+        $new->content          = $request->content;
+        $new->status          = $request->status;
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+//            $name = $file->getClientOriginalName();
+//            $extension = $file->extension();
+            $new->img = base64_encode(file_get_contents($file->path()));
+        }
+        if($request->delete == 1) $new->img = NULL;
+        if(!$new->save()) {
+            return redirect()->back()->with('err', 'Có lỗi, vui lòng thử lại');
+        }
+        return redirect()->back()->with('success', 'Cập nhật nội dung thành công!');
+
+    }
+    public function searchNews(Request $request) {
+        $key = $request->key;
+        $output = '';
+        $news = DB::table('news')
+            ->where('status', 'LIKE', '%'.$request->status.'%')
+            ->where(function ($query) use ($key) {
+                $query->where('content', 'LIKE', '%'.$key.'%')
+                    ->orWhere('description', 'LIKE', '%'.$key.'%')
+                    ->orWhere('created_at', 'LIKE', '%'.$key.'%');
+            })
+            ->get();
+        if ($news) {
+            foreach ($news as $key => $new) {
+                $new->status == 1 ? $new->status = "✔ Đang hiển thị" : $new->status = "<span style='color:red'>✘ Đang ẩn</span>";
+                if($new->img) {
+                    $link = "<a onclick=debugBase64('data:image/png;base64,$new->img')><img src='data:image/png;base64,$new->img' style='width: 100px; cursor: pointer'></a>";
+                }
+                else $link = '';
+                $output .= '<tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" value="'.$new->id.'" id="'.$new->id.'" style="margin-top: -5px"></th>
+                <th scope="row">' . ($key + 1) . '</th>
+                <td>' . $new->description . '</td>
+                <td>' . $new->content . '</td>
+                <td>' . $link . '</td>
+                <td>' . $new->status . '</td>
+                <td>' . $new->created_at . '</td>
+                <td>' . $new->updated_at . '</td>
+                <td>
+                    <a href="admin/news/edit/'.$new->id.'"><i class="fas fa-edit"></i></a> |
+                    <a href="javascript:void(0)" onclick=ajaxDeleteNews('.$new->id.')><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>';
+            }
+            echo $output;
+        }
+
+    }
+    public function deleteNews(Request $request) {
+        $arrId = explode(",",$request->id);
+        foreach ($arrId as $id) {
+            if($id == '' || $id == NULL) {
+                return 'error';
+                die();
+            }
+            $new = News::find($id);
+            $new->delete();
         }
         return "success";
     }

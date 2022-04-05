@@ -1,5 +1,5 @@
 @extends('admin.layout.app')
-@section('title', 'Sửa nội dung')
+@section('title', 'Edit news')
 @section('content_admin')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Sửa nội dung</h1>
+                        <h1>Edit news</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -38,22 +38,22 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <form role="form" method="post" action="{{ route('p_edit_content') }}" enctype="multipart/form-data">
+                            <form role="form" method="post" action="{{ route('p_edit_news') }}" enctype="multipart/form-data">
                                 @csrf
                                 <table class="table">
                                     <tr>
-                                        <th scope="row">Tên menu(<span style="color: red">*</span>)</th>
+                                        <th scope="row">Mô tả</th>
                                         <td>
                                             <div class="form-group">
-                                                <select class="form-control" id="" name="id_menu">
-                                                    @foreach ($menus as $menu)
-                                                        <option value="{{ $menu->id }}"
-                                                                @if($menu->id == $content->id)
-                                                                selected
-                                                                @endif
-                                                                style="font-weight: bold!important">{{ $menu->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; display: none;" name="description">{{ $new->description }}</textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nội dung</th>
+                                        <td>
+                                            <div class="form-group">
+                                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; display: none;" name="content">{{ $new->content }}</textarea>
                                             </div>
                                         </td>
                                     </tr>
@@ -73,25 +73,9 @@
                                             </div>
                                             <hr>
                                             <p><b>Ảnh cũ: </b></p><br>
-                                            <img src="data:image/png;base64,{{ $content->img }}" width="200px" height="150px">
+                                            <img src="data:image/png;base64,{{ $new->img }}" width="200px" height="150px">
                                             <hr>
                                             <p>Delete? <input type="checkbox" value="1" name="delete"></p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Mô tả</th>
-                                        <td>
-                                            <div class="form-group">
-                                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; display: none;" name="description">{{ $content->description }}</textarea>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nội dung</th>
-                                        <td>
-                                            <div class="form-group">
-                                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; display: none;" name="content">{{ $content->content }}</textarea>
-                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -99,26 +83,20 @@
                                         <td>
                                             <div class="form-group">
                                                 <select class="form-control" id="" name="status">
-                                                    <option value="1"
-                                                    @if($content->status == 1) selected
-                                                            @endif
-                                                    >Hiển thị</option>
-                                                    <option value="0"
-                                                    @if($content->status == 0) selected
-                                                            @endif
-                                                    >Ẩn</option>
+                                                    <option value="1">Hiển thị</option>
+                                                    <option value="0">Ẩn</option>
                                                 </select>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><button type="submit" class="btn btn-primary">Submit</button>&emsp;
-                                            <a href="{{ route('contents') }}" class="btn btn-warning">Quay Lại</a>
+                                            <a href="{{ route('news') }}" class="btn btn-warning">Quay Lại</a>
                                         </th>
                                         <td>
                                         </td>
                                     </tr>
                                 </table>
-                                <input type="hidden" name="id" value="{{ $content->id }}">
+                                <input type="hidden" name="id" value="{{ $new->id }}">
                             </form>
                         </div>
                     </div>

@@ -53,4 +53,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('contents/search', [AdminController::class, 'searchContent'])->name('search_content');
     Route::post('contents/delete', [AdminController::class, 'deleteContent'])->name('delete_content');
 
+    Route::get('news', [AdminController::class, 'news'])->name('news');
+    Route::get('news/add', [AdminController::class, 'addNews'])->name('add_news');
+    Route::post('news/add', [AdminController::class, 'pAddNews'])->name('p_add_news');
+    Route::get('news/edit/{id}', [AdminController::class, 'editNews'])->name('edit_news');
+    Route::post('news/edit', [AdminController::class, 'pEditNews'])->name('p_edit_news');
+    Route::get('news/search', [AdminController::class, 'searchNews'])->name('search_news');
+    Route::post('news/delete', [AdminController::class, 'deleteNews'])->name('delete_news');
+
 });

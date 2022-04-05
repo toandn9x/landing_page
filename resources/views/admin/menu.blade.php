@@ -70,7 +70,7 @@
                                             <td>{{ $menu->updated_at }}</td>
                                             <td>
                                                 <a href="{{ route('edit_menu', $menu->id) }}"><i class="fas fa-edit"></i></a> |
-                                                <a href="javascript:void(0)" onclick="ajaxDeleteMenu({{ $menu->id }})"><i class="fas fa-trash"></i></a> |
+                                                <a href="javascript:void(0)" onclick="ajaxDeleteMenu({{ $menu->id }})"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -198,6 +198,11 @@
             console.log(listId);
             ajaxDeleteMenu(listId);
         })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("ul li:nth-child(3) > a").addClass("active");
+        });
     </script>
 @stop
 

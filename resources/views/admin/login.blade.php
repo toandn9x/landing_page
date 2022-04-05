@@ -45,8 +45,8 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
-          <div class="input-group-append">
+          <input type="password" class="form-control" placeholder="Password" name="password" id="s_pass">
+          <div class="input-group-append" id="show_pass">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
@@ -80,10 +80,10 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="{{ route('recover_pass') }}">I forgot my password</a>
+        <a href="">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+        <a href="" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.card-body -->
@@ -98,5 +98,17 @@
 <script src="admin_lib/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="admin_lib/dist/js/adminlte.min.js"></script>
+<script>
+$('#show_pass').on('click', function() {
+  var sType = $('#s_pass').attr('type');
+  if(sType == 'password') {
+    $('#s_pass').prop("type", "text");
+  }
+  else {
+    $('#s_pass').prop("type", "password");
+  }
+
+})
+</script>
 </body>
 </html>

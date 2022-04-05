@@ -34,6 +34,8 @@
   <link rel="stylesheet" href="admin_lib/plugins/toastr/toastr.min.css">
   {{-- image view --}}
 {{--  <link rel="stylesheet" href="lib/css/jquery.mtfpicviewer.css" />--}}
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -86,6 +88,7 @@
 <script src="admin_lib/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 {{-- image view --}}
 {{--<script src="lib/js/jquery.mtfpicviewer.js"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
   $.ajaxSetup({
     headers: {
