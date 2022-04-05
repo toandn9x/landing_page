@@ -73,7 +73,18 @@
                                             </div>
                                             <hr>
                                             <p><b>Ảnh cũ: </b></p><br>
-                                            <img src="data:image/png;base64,{{ $new->img }}" width="200px" height="150px">
+                                            @if($new->img)
+                                                @php
+                                                    $type = explode(".",$new->img);
+                                                @endphp
+                                                @if(end($type) == "mp4")
+                                                    <video width="100" controls>
+                                                        <source src="images/{{ $new->img }}" type="video/mp4">
+                                                    </video>
+                                                @else
+                                                    <a href="images/{{ $new->img }}"><img src="images/{{ $new->img }}" style="width: 100px; cursor: pointer"></a>
+                                                @endif
+                                            @endif
                                             <hr>
                                             <p>Delete? <input type="checkbox" value="1" name="delete"></p>
                                         </td>

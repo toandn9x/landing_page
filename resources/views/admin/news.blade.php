@@ -75,9 +75,18 @@
                                             <td>{!! $new->content !!}</td>
                                             <td>
                                                 @if($new->img)
-                                                    <a onclick="debugBase64('data:image/png;base64,{{ $new->img }}')">
-                                                        <img src="data:image/png;base64,{{ $new->img }}" style="width: 100px; cursor: pointer">
-                                                    </a>
+                                                    @if($new->img)
+                                                        @php
+                                                            $type = explode(".",$new->img);
+                                                        @endphp
+                                                        @if(end($type) == "mp4")
+                                                            <video width="100" controls>
+                                                                <source src="images/{{ $new->img }}" type="video/mp4">
+                                                            </video>
+                                                        @else
+                                                            <a href="images/{{ $new->img }}"><img src="images/{{ $new->img }}" style="width: 100px; cursor: pointer"></a>
+                                                        @endif
+                                                    @endif
                                                 @endif
                                             </td>
                                             @if ($new->status == 1)
@@ -238,12 +247,6 @@
             console.log(listId);
             ajaxDeleteNews(listId);
         })
-    </script>
-    <script>
-        function debugBase64(base64URL){
-            var win = window.open();
-            win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
-        }
     </script>
     <script>
         $(document).ready(function() {

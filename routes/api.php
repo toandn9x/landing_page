@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\apiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('get-menus', [apiController::class, 'getMenus']);
+Route::get('get-contents', [apiController::class, 'getContents']);
+Route::get('get-contents-byid/{id}', [apiController::class, 'getContentsByid']);

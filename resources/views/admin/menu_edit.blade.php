@@ -90,10 +90,10 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">
-                                            <button type="submit" class="btn btn-primary">Submit</button>&emsp;
-                                            <a href="{{ route('menus') }}" class="btn btn-warning">Quay Lại</a>
                                         </th>
                                         <td>
+                                            <p><button type="submit" class="btn btn-primary">Submit</button>&emsp;
+                                                <a href="{{ route('menus') }}" class="btn btn-warning">Quay Lại</a></p>
                                         </td>
                                     </tr>
                                 </table>

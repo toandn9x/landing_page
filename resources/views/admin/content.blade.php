@@ -84,9 +84,16 @@
                                             <td>{{ $content->name }}</td>
                                             <td>
                                                 @if($content->img)
-                                                    <a onclick="debugBase64('data:image/png;base64,{{ $content->img }}')">
-                                                        <img src="data:image/png;base64,{{ $content->img }}" style="width: 100px; cursor: pointer">
-                                                    </a>
+                                                    @php
+                                                        $type = explode(".",$content->img);
+                                                    @endphp
+                                                    @if(end($type) == "mp4")
+                                                        <video width="100" controls>
+                                                            <source src="images/{{ $content->img }}" type="video/mp4">
+                                                        </video>
+                                                    @else
+                                                        <a href="images/{{ $content->img }}"><img src="images/{{ $content->img }}" style="width: 100px; cursor: pointer"></a>
+                                                    @endif
                                                 @endif
                                             </td>
                                             <td>{!! $content->description !!}</td>

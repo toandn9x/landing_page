@@ -14,6 +14,7 @@ use App\Models\News;
 class AdminController extends Controller
 {
     // Author: Toandn - 11:20AM
+    // link img: env('APP_URL')."/images/".$content->img;
     public function login() {
         return view('admin.login');
     }
@@ -266,11 +267,14 @@ class AdminController extends Controller
         $content->content          = $request->content;
         $content->status          = $request->status;
         if ($request->hasFile('img')) {
-            $file = $request->file('img');
-//            $name = $file->getClientOriginalName();
-//            $extension = $file->extension();
-            $content->img = base64_encode(file_get_contents($file->path()));
+            $file       = $request->file('img');
+            $name       = $file->getClientOriginalName();
+            $extension  = $file->extension();
+            $newname    = rand()."_".date("d_m_Y")."_".$name;
+            $file->move("images", $newname);
+            $content->img = $newname;
         }
+        else $content->img = "";
         if(!$content->save()) {
             return redirect()->back()->with('err', 'Có lỗi, vui lòng thử lại');
         }
@@ -292,11 +296,21 @@ class AdminController extends Controller
         $content->description      = $request->description;
         $content->content          = $request->content;
         $content->status          = $request->status;
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-//            $name = $file->getClientOriginalName();
-//            $extension = $file->extension();
-            $content->img = base64_encode(file_get_contents($file->path()));
+        if(isset($content->img) && $content->img != '' && $content->img != NULL) {
+            $old_file_path      = "images/".$content->img;
+        }
+        else $old_file_path = '';
+        if($request->hasFile("img")) {
+            $file       = $request->file('img');
+            $name       = $file->getClientOriginalName();
+            $extension  = $file->extension();
+            $newname    = rand()."_".date("d_m_Y")."_".$name;
+            $file->move("images", $newname);
+            // nếu tồn tại file cũ thì xóa
+            if (file_exists($old_file_path)) {
+                unlink($old_file_path);
+            }
+            $content->img = $newname;
         }
         if($request->delete == 1) $content->img = NULL;
         if(!$content->save()) {
@@ -323,7 +337,7 @@ class AdminController extends Controller
             foreach ($contents as $key => $content) {
                 $content->status == 1 ? $content->status = "✔ Đang hiển thị" : $content->status = "<span style='color:red'>✘ Đang ẩn</span>";
                 if($content->img) {
-                    $link = "<a onclick=debugBase64('data:image/png;base64,$content->img')><img src='data:image/png;base64,$content->img' style='width: 100px; cursor: pointer'></a>";
+                    $link = "<a href='images/$content->img'><img src='images/$content->img' style='width: 100px; cursor: pointer'></a>";
                 }
                 else $link = '';
                 $output .= '<tr>
@@ -372,11 +386,14 @@ class AdminController extends Controller
         $news->content          = $request->content;
         $news->status          = $request->status;
         if ($request->hasFile('img')) {
-            $file = $request->file('img');
-//            $name = $file->getClientOriginalName();
-//            $extension = $file->extension();
-            $news->img = base64_encode(file_get_contents($file->path()));
+            $file       = $request->file('img');
+            $name       = $file->getClientOriginalName();
+            $extension  = $file->extension();
+            $newname    = rand()."_".date("d_m_Y")."_".$name;
+            $file->move("images", $newname);
+            $news->img = $newname;
         }
+        else $news->img = "";
         if(!$news->save()) {
             return redirect()->back()->with('err', 'Error');
         }
@@ -395,11 +412,21 @@ class AdminController extends Controller
         $new->description      = $request->description;
         $new->content          = $request->content;
         $new->status          = $request->status;
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-//            $name = $file->getClientOriginalName();
-//            $extension = $file->extension();
-            $new->img = base64_encode(file_get_contents($file->path()));
+        if(isset($new->img) && $new->img != '' && $new->img != NULL) {
+            $old_file_path      = "images/".$new->img;
+        }
+        else $old_file_path = '';
+        if($request->hasFile("img")) {
+            $file       = $request->file('img');
+            $name       = $file->getClientOriginalName();
+            $extension  = $file->extension();
+            $newname    = rand()."_".date("d_m_Y")."_".$name;
+            $file->move("images", $newname);
+            // nếu tồn tại file cũ thì xóa
+            if (file_exists($old_file_path)) {
+                unlink($old_file_path);
+            }
+            $new->img = $newname;
         }
         if($request->delete == 1) $new->img = NULL;
         if(!$new->save()) {
