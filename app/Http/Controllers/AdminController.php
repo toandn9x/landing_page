@@ -47,7 +47,11 @@ class AdminController extends Controller
     }
 
     public function index() {
-        return view('admin.index');
+        $users = DB::table('users')->count();
+        $menus = DB::table('menus')->count();
+        $contents = DB::table('contents')->count();
+        $news = DB::table('news')->count();
+        return view('admin.index', ['users' => $users, 'menus' => $menus, 'contents' => $contents, 'news' => $news]);
     }
 
     public function users() {
