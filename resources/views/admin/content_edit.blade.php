@@ -93,7 +93,7 @@
                                         <th scope="row">Mô tả</th>
                                         <td>
                                             <div class="form-group">
-                                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; display: none;" name="description">{{ $content->description }}</textarea>
+                                                <textarea class="form-control" rows="3" name="description">{{ $content->description }}</textarea>
                                             </div>
                                         </td>
                                     </tr>
@@ -101,7 +101,7 @@
                                         <th scope="row">Nội dung</th>
                                         <td>
                                             <div class="form-group">
-                                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; display: none;" name="content">{{ $content->content }}</textarea>
+                                                <textarea class="form-control" rows="5" name="content">{{ $content->content }}</textarea>
                                             </div>
                                         </td>
                                     </tr>

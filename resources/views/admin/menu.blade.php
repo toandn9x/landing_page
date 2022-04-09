@@ -59,7 +59,7 @@
                                             <th scope="row"><input class="form-check-input" type="checkbox" value="{{ $menu->id }}" id="{{ $menu->id }}"></th>
                                             <th scope="row">{{ $key+1 }}</th>
                                             <td>{{ $menu->name }}</td>
-                                            <td>{{ $menu->description }}</td>
+                                            <td>{!! $menu->description !!}</td>
                                             @if ($menu->status == 1)
                                                 <td>✔ Đang hiển thị</td>
                                             @else

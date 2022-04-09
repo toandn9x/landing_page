@@ -53,7 +53,7 @@
                                         <th scope="row">Nội dung</th>
                                         <td>
                                             <div class="form-group">
-                                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; display: none;" name="content">{{ $new->content }}</textarea>
+                                                <textarea class="form-control" rows="5" name="content">{{ $new->content }}</textarea>
                                             </div>
                                         </td>
                                     </tr>
