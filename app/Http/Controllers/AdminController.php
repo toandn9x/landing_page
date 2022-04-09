@@ -490,7 +490,7 @@ class AdminController extends Controller
     }
 
     public function settings() {
-        return view('admin.users');
+        return view('admin.setting');
     }
 
 }
