@@ -22,7 +22,7 @@ class AdminController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             //$id = Auth::id();
             $user = Auth::user();
-            if($user->role == 1 && $user->status == 1) {
+            if($user->status == 1) {
                 return redirect()->route('index')->with('success','Đăng nhập thành công');
             }
             else {
@@ -487,6 +487,10 @@ class AdminController extends Controller
             $new->delete();
         }
         return "success";
+    }
+
+    public function settings() {
+        return view('admin.users');
     }
 
 }
