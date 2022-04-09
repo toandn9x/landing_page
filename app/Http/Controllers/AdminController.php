@@ -15,6 +15,10 @@ class AdminController extends Controller
 {
     // Author: Toandn - 11:20AM
     // link img: env('APP_URL')."/images/".$content->img;
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function login() {
         return view('admin.login');
     }
