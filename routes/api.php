@@ -19,6 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('get-menus', [apiController::class, 'getMenus']);
-Route::get('get-contents', [apiController::class, 'getContents']);
-Route::get('get-contents-byid/{id}', [apiController::class, 'getContentsByid']);
+Route::get('get-alls', [apiController::class, 'getAlls']);
