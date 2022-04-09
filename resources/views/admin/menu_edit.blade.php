@@ -54,7 +54,7 @@
                                         <th scope="row">Mô tả</th>
                                         <td>
                                             <div class="form-group">
-                                                <textarea class="form-control" rows="5" placeholder="Place some text here"
+                                                <textarea class="form-control" rows="3" placeholder="Place some text here"
                                                           name="menu_description">{{ $menu->description }}</textarea>
                                             </div>
                                         </td>
@@ -89,10 +89,10 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">
-                                        </th>
-                                        <td>
                                             <p><button type="submit" class="btn btn-primary">Submit</button>&emsp;
                                                 <a href="{{ route('menus') }}" class="btn btn-warning">Quay Lại</a></p>
+                                        </th>
+                                        <td>
                                         </td>
                                     </tr>
                                 </table>
