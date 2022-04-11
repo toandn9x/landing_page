@@ -20,11 +20,13 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('add_menu') }}" class="btn btn-info">Thêm</a> |
-                                <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
-                                <a href="javascript:void(0)" class="btn btn-danger" style="" id="menu_delete">Xóa</a>
-                                <!-- SEARCH FORM -->
-                                <form class="form-inline ml-3 float-right">
+                                <div class="col-sm-3" style="margin-left: 10px">
+                                    <a href="{{ route('add_menu') }}" class="btn btn-info">Thêm</a> |
+                                    <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
+                                    <a href="javascript:void(0)" class="btn btn-danger" style="" id="menu_delete">Xóa</a>
+                                    <!-- SEARCH FORM -->
+                                </div>
+                                <form class="form-inline ml-3 float-right" style="padding-top: 10px; padding-left: 0px!important">
                                     <div class="input-group input-group-sm">
                                         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" id="menu_search">
                                     </div>
@@ -38,7 +40,7 @@
                                 </form>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body table-responsive p-0">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
