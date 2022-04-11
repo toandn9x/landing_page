@@ -30,35 +30,37 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('add_content') }}" class="btn btn-info">Thêm</a> |
-                                <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
-                                <a href="javascript:void(0)" class="btn btn-danger" style="" id="content_delete">Xóa</a>
-                                <!-- SEARCH FORM -->
-                                <form class="form-inline ml-3 float-right">
-                                    <div class="input-group input-group-sm">
-                                        <input class="form-control form-control-navbar" type="search"
-                                               placeholder="Search" aria-label="Search" id="content_search">
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                        <select class="form-control" id="content_status">
-                                            <option value="">--Trạng thái--</option>
-                                            <option value="1" style="font-weight: bold!important">Đang hiển thị</option>
-                                            <option value="0" style="font-weight: bold!important">Đang ẩn</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                        <select class="form-control" id="id_menu">
-                                            <option value="">--Tên menu--</option>
-                                            @foreach ($menus as $menu)
-                                                <option value="{{ $menu->id }}"
-                                                        style="font-weight: bold!important">{{ $menu->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </form>
+                                <div class="col-sm-12">
+                                    <a href="{{ route('add_content') }}" class="btn btn-info" style="margin-left: 15px">Thêm</a> |
+                                    <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
+                                    <a href="javascript:void(0)" class="btn btn-danger" style="" id="content_delete">Xóa</a>
+                                    <!-- SEARCH FORM -->
+                                    <form class="form-inline ml-3 float-right">
+                                        <div class="input-group input-group-sm">
+                                            <input class="form-control form-control-navbar" type="search"
+                                                   placeholder="Search" aria-label="Search" id="content_search">
+                                        </div>
+                                        <div class="input-group input-group-sm">
+                                            <select class="form-control" id="content_status">
+                                                <option value="">--Trạng thái--</option>
+                                                <option value="1" style="font-weight: bold!important">Đang hiển thị</option>
+                                                <option value="0" style="font-weight: bold!important">Đang ẩn</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group input-group-sm">
+                                            <select class="form-control" id="id_menu">
+                                                <option value="">--Tên menu--</option>
+                                                @foreach ($menus as $menu)
+                                                    <option value="{{ $menu->id }}"
+                                                            style="font-weight: bold!important">{{ $menu->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body table-responsive p-0">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>

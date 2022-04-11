@@ -30,27 +30,29 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('add_news') }}" class="btn btn-info">Thêm</a> |
-                                <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
-                                <a href="javascript:void(0)" class="btn btn-danger" style="" id="news_delete">Xóa</a>
-                                <!-- SEARCH FORM -->
-                                <form class="form-inline ml-3 float-right">
-                                    <div class="input-group input-group-sm">
-                                        <input class="form-control form-control-navbar" type="search"
-                                               placeholder="Search" aria-label="Search" id="news_search">
-                                    </div>
-                                    <div class="input-group input-group-sm">
-                                        <select class="form-control" id="news_status">
-                                            <option value="">--Trạng thái--</option>
-                                            <option value="1" style="font-weight: bold!important">Đang hiển thị</option>
-                                            <option value="0" style="font-weight: bold!important">Đang ẩn</option>
-                                        </select>
-                                    </div>
-                                </form>
+                                <div class="col-sm-12">
+                                    <a href="{{ route('add_news') }}" class="btn btn-info" style="margin-left: 15px">Thêm</a> |
+                                    <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
+                                    <a href="javascript:void(0)" class="btn btn-danger" style="" id="news_delete">Xóa</a>
+                                    <!-- SEARCH FORM -->
+                                    <form class="form-inline ml-3 float-right">
+                                        <div class="input-group input-group-sm">
+                                            <input class="form-control form-control-navbar" type="search"
+                                                   placeholder="Search" aria-label="Search" id="news_search">
+                                        </div>
+                                        <div class="input-group input-group-sm">
+                                            <select class="form-control" id="news_status">
+                                                <option value="">--Trạng thái--</option>
+                                                <option value="1" style="font-weight: bold!important">Đang hiển thị</option>
+                                                <option value="0" style="font-weight: bold!important">Đang ẩn</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-hover">
+                                <table class="table table-responsive p-0">
                                     <thead>
                                     <tr>
                                         <th scope="col"></th>
