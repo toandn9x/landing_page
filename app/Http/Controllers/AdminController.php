@@ -260,7 +260,6 @@ class AdminController extends Controller
     }
     public function addContent() {
         $menus = DB::table('menus')
-            ->where('status',1)
             ->get();
         return view('admin.content_add', ['menus' => $menus]);
     }
