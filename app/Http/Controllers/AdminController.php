@@ -503,4 +503,8 @@ class AdminController extends Controller
         return view('admin.setting');
     }
 
+    public function pSettings(Request $request) {
+    
+    }
+
 }

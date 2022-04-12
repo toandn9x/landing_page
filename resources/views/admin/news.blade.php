@@ -204,7 +204,7 @@
             //alert(id);
             $.confirm({
                 title: 'Xác Nhận!',
-                content: 'Bạn có chắc chắn muốn xóa (những) tài khoản này ?',
+                content: 'Bạn có chắc chắn muốn xóa (những) bản ghi này ?',
                 type: 'red',
                 typeAnimated: true,
                 buttons: {

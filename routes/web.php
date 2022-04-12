@@ -63,5 +63,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('news/delete', [AdminController::class, 'deleteNews'])->name('delete_news');
 
         Route::get('settings', [AdminController::class, 'settings'])->name('settings');
+        Route::post('settings', [AdminController::class, 'pSettings'])->name('p_settings');
     });
 });
