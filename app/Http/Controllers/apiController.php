@@ -32,8 +32,12 @@ class apiController extends Controller
         foreach ($contents as $key => $item) {
             $arr_content[$item['m_name']][$key] = $item;
         }
+        $page2 = DB::table('news')->select('id','description','content','img')
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get()->toArray();
         $settings = DB::table('settings')->first();
-        return response()->json(['menus' => $menus, 'contents' => $arr_content, 'settings' => $settings]);
+        return response()->json(['menus' => $menus, 'contents' => $arr_content, 'page2' => $page2,'settings' => $settings]);
 
     }
 }
