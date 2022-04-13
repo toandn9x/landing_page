@@ -289,13 +289,14 @@ class AdminController extends Controller
             ->join('menus', 'menus.id', '=', 'contents.id_menu')
             ->select('contents.*', 'menus.name', 'menus.id as m_id')
             ->orderBy('id', 'DESC')->paginate(50);
-        $menus = DB::table('menus')->orderBy('id', 'DESC')->get();
+        $menus = DB::table('menus')->orderBy('m_order', 'ASC')->get();
         return view('admin.content', ['contents' => $contents, 'menus' => $menus]);
     }
 
     public function addContent()
     {
         $menus = DB::table('menus')
+            ->orderBy('m_order', 'ASC')
             ->get();
         return view('admin.content_add', ['menus' => $menus]);
     }
