@@ -38,7 +38,7 @@
                       <th scope="row">Địa Chỉ</th>
                       <td>
                         <div class="form-group">
-                          <input type="text" class="form-control" id="" placeholder="Enter address" name="address" value="">
+                          <input type="text" class="form-control" id="" placeholder="Enter address" name="address" value="{{ isset($setting->address) ? $setting->address : '' }}">
                         </div>
                       </td>
                     </tr>
@@ -46,7 +46,7 @@
                       <th scope="row">Email</th>
                       <td>
                         <div class="form-group">
-                          <input type="email" class="form-control" id="" placeholder="Enter address" name="email" value="">
+                          <input type="email" class="form-control" id="" placeholder="Enter address" name="email" value="{{ isset($setting->email) ? $setting->email : '' }}">
                         </div>
                       </td>
                     </tr>
@@ -54,7 +54,7 @@
                       <th scope="row">Số điện thoại</th>
                       <td>
                         <div class="form-group">
-                          <input type="text" class="form-control" id="" placeholder="Enter phone number" name="phone" value="">
+                          <input type="text" class="form-control" id="" placeholder="Enter phone number" name="phone" value="{{ isset($setting->phone) ? $setting->phone : '' }}">
                         </div>
                       </td>
                     </tr>
@@ -74,7 +74,18 @@
                         </div>
                         <hr>
                         <p><b>Logo hiện tại: </b></p>
-                        <img src="images/" width="200px" height="150px">
+                          @if(isset($setting->logo_img))
+                              @php
+                                  $type = explode(".",$setting->logo_img);
+                              @endphp
+                              @if(end($type) == "mp4")
+                                  <video width="100" controls>
+                                      <source src="images/{{ $setting->logo_img }}" type="video/mp4">
+                                  </video>
+                              @else
+                                  <a href="images/{{ $setting->logo_img }}"><img src="images/{{ $setting->logo_img }}" style="width: 100px; cursor: pointer"></a>
+                              @endif
+                          @endif
                       </td>
                     </tr>
                     <tr>
@@ -93,12 +104,23 @@
                         </div>
                         <hr>
                         <p><b>Background hiện tại: </b></p>
-                        <img src="images/" width="200px" height="150px">
+                          @if(isset($setting->bg_img))
+                              @php
+                                  $type = explode(".",$setting->bg_img);
+                              @endphp
+                              @if(end($type) == "mp4")
+                                  <video width="100" controls>
+                                      <source src="images/{{ $setting->bg_img }}" type="video/mp4">
+                                  </video>
+                              @else
+                                  <a href="images/{{ $setting->bg_img }}"><img src="images/{{ $setting->bg_img }}" style="width: 100px; cursor: pointer"></a>
+                              @endif
+                          @endif
                       </td>
                     </tr>
                     <tr>
                       <th scope="row"><button type="submit" class="btn btn-primary">Submit</button>&emsp;
-                      <a href="" class="btn btn-warning">Quay Lại</a>
+                      <a href="{{ route('index') }}" class="btn btn-warning">Quay Lại</a>
                       </th>
                       <td>
                       </td>

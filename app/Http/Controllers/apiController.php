@@ -25,7 +25,8 @@ class apiController extends Controller
             ->where('contents.status', 1)
             ->orderBy('menus.m_order', 'asc')
             ->get()->toArray();
-        return response()->json(['menus' => $menus, 'contents' => $contents]);
+        $settings = DB::table('settings')->first();
+        return response()->json(['menus' => $menus, 'contents' => $contents, 'settings' => $settings]);
 
     }
 }
