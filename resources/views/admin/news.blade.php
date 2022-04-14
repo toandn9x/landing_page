@@ -35,7 +35,7 @@
                                     <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
                                     <a href="javascript:void(0)" class="btn btn-danger" style="" id="news_delete">Xóa</a>
                                     <!-- SEARCH FORM -->
-                                    <form class="form-inline ml-3 float-right">
+                                    <form class="form-inline ml-3 float-right" style="padding-top: 10px; padding-left: 0px!important">
                                         <div class="input-group input-group-sm">
                                             <input class="form-control form-control-navbar" type="search"
                                                    placeholder="Search" aria-label="Search" id="news_search">
@@ -51,8 +51,8 @@
                                 </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
-                                <table class="table table-responsive p-0">
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover">
                                     <thead>
                                     <tr>
                                         <th scope="col"></th>
@@ -251,9 +251,7 @@
         })
     </script>
     <script>
-        $(document).ready(function() {
-            $("ul li:nth-child(5) > a").addClass("active");
-        });
+        $("ul li:nth-child(5) > a").addClass("active");
     </script>
 @stop
 

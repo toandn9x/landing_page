@@ -202,9 +202,7 @@
         })
     </script>
     <script>
-        $(document).ready(function() {
-            $("ul li:nth-child(3) > a").addClass("active");
-        });
+        $("ul li:nth-child(3) > a").addClass("active");
     </script>
 @stop
 

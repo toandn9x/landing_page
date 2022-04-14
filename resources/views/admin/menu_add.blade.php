@@ -77,11 +77,10 @@
                                     </tr>
                                     <tr>
                                     </tr><th scope="row">
-
+                                        <p><button type="submit" class="btn btn-primary">Submit</button>&emsp;
+                                            <a href="{{ route('menus') }}" class="btn btn-warning">Back</a></p>
                                         </th>
                                         <td>
-                                            <p><button type="submit" class="btn btn-primary">Submit</button>&emsp;
-                                                <a href="{{ route('menus') }}" class="btn btn-warning">Quay Lại</a></p>
                                         </td>
                                     </tr>
                                 </table>
@@ -94,4 +93,9 @@
         </section>
     </div>
     <!-- /.content -->
+@stop
+@section('script')
+    <script>
+        $("ul li:nth-child(3) > a").addClass("active");
+    </script>
 @stop

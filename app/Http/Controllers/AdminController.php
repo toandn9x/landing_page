@@ -135,16 +135,16 @@ class AdminController extends Controller
         $key = $request->key;
         $output = '';
         $users = DB::table('users')
-            ->where('status', 'LIKE', '%' . $request->status . '%')
-            ->where('role', 'LIKE', '%' . $request->role . '%')
             ->where(function ($query) use ($key) {
                 $query->where('name', 'LIKE', '%' . $key . '%')
                     ->orWhere('email', 'LIKE', '%' . $key . '%')
                     ->orWhere('created_at', 'LIKE', '%' . $key . '%');
-            })
-            ->get();
-        if ($users) {
-            foreach ($users as $key => $user) {
+            });
+        if(isset($request->status)) $us = $users->where('status', 'LIKE', '%' . $request->status . '%');
+        if(isset($request->role)) $us = $users->where('role', 'LIKE', '%' . $request->role . '%');
+        $us = $users->get();
+        if ($us) {
+            foreach ($us as $key => $user) {
                 $user->status == 1 ? $user->status = "✔ Đang hoạt động" : $user->status = "<span style='color:red'>✘ Huỷ kích hoạt</span>";
                 $user->role == 1 ? $user->role = "<span style='color:red'>Quản trị viên</span>" : $user->role = "Người dùng";
                 $output .= '<tr>
@@ -238,15 +238,15 @@ class AdminController extends Controller
         $key = $request->key;
         $output = '';
         $menus = DB::table('menus')
-            ->where('status', 'LIKE', '%' . $request->status . '%')
             ->where(function ($query) use ($key) {
                 $query->where('name', 'LIKE', '%' . $key . '%')
                     ->orWhere('description', 'LIKE', '%' . $key . '%')
                     ->orWhere('created_at', 'LIKE', '%' . $key . '%');
-            })
-            ->get();
-        if ($menus) {
-            foreach ($menus as $key => $menu) {
+            });
+        if(isset($request->status)) $mn = $menus->where('status', $request->status);
+        $mn = $menus->orderBy('m_order', 'ASC')->get();
+        if ($mn) {
+            foreach ($mn as $key => $menu) {
                 $menu->status == 1 ? $menu->status = "✔ Đang hiển thị" : $menu->status = "<span style='color:red'>✘ Đang ẩn</span>";
                 $output .= '<tr>
                 <th scope="row"><input class="form-check-input" type="checkbox" value="' . $menu->id . '" id="' . $menu->id . '"></th>
@@ -288,7 +288,7 @@ class AdminController extends Controller
         $contents = DB::table('contents')
             ->join('menus', 'menus.id', '=', 'contents.id_menu')
             ->select('contents.*', 'menus.name', 'menus.id as m_id')
-            ->orderBy('id', 'DESC')->paginate(50);
+            ->orderBy('m_order', 'ASC')->paginate(50);
         $menus = DB::table('menus')->orderBy('m_order', 'ASC')->get();
         return view('admin.content', ['contents' => $contents, 'menus' => $menus]);
     }
@@ -377,9 +377,7 @@ class AdminController extends Controller
             });
         if(isset($request->status)) $ct = $contents->where('contents.status', '=', $request->status);
         if(isset($request->id_menu)) $ct = $contents->where('contents.id_menu', '=', $request->id_menu);
-//            ->where('contents.status', '=', $request->status)
-//            ->where('contents.id_menu', '=', $request->id_menu)
-        $ct = $contents->get();
+        $ct = $contents->orderBy('m_order', 'ASC')->get();
         if ($contents) {
             foreach ($ct as $key => $content) {
                 $content->status == 1 ? $content->status = "✔ Đang hiển thị" : $content->status = "<span style='color:red'>✘ Đang ẩn</span>";
@@ -496,15 +494,15 @@ class AdminController extends Controller
         $key = $request->key;
         $output = '';
         $news = DB::table('news')
-            ->where('status', 'LIKE', '%' . $request->status . '%')
             ->where(function ($query) use ($key) {
                 $query->where('content', 'LIKE', '%' . $key . '%')
                     ->orWhere('description', 'LIKE', '%' . $key . '%')
                     ->orWhere('created_at', 'LIKE', '%' . $key . '%');
-            })
-            ->get();
-        if ($news) {
-            foreach ($news as $key => $new) {
+            });
+        if(isset($request->status)) $ne = $news->where('status', 'LIKE', '%' . $request->status . '%');
+        $ne = $news->orderBy('id', 'DESC')->get();
+        if ($ne) {
+            foreach ($ne as $key => $new) {
                 $new->status == 1 ? $new->status = "✔ Đang hiển thị" : $new->status = "<span style='color:red'>✘ Đang ẩn</span>";
                 if ($new->img) {
                     $link = "<a onclick=debugBase64('data:image/png;base64,$new->img')><img src='data:image/png;base64,$new->img' style='width: 100px; cursor: pointer'></a>";

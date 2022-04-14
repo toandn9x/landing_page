@@ -103,7 +103,7 @@
                     </tr>
                     <tr>
                       <th scope="row"><button type="submit" class="btn btn-primary">Submit</button>&emsp;
-                      <a href="{{ route('users') }}" class="btn btn-warning">Quay Lại</a>
+                      <a href="{{ route('users') }}" class="btn btn-warning">Back</a>
                       </th>
                       <td>
                       </td>
@@ -122,3 +122,8 @@
   </div>
     <!-- /.content -->
     @stop
+@section('script')
+    <script>
+        $("ul li:nth-child(2) > a").addClass("active");
+    </script>
+@stop
