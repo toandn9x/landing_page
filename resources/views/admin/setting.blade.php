@@ -135,7 +135,7 @@
                                     <tr>
                                         <th scope="row">
                                             <button type="submit" class="btn btn-primary">Submit</button>&emsp;
-                                            <a href="{{ route('index') }}" class="btn btn-warning">Quay Lại</a>
+                                            <a href="{{ route('index') }}" class="btn btn-warning">Back</a>
                                         </th>
                                         <td>
                                         </td>
