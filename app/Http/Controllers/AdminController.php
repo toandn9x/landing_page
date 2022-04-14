@@ -370,16 +370,18 @@ class AdminController extends Controller
         $contents = DB::table('contents')
             ->join('menus', 'menus.id', '=', 'contents.id_menu')
             ->select('contents.*', 'menus.name', 'menus.id as m_id')
-            ->where('contents.status', 'LIKE', '%' . $request->status . '%')
-            ->where('contents.id_menu', 'LIKE', '%' . $request->id_menu . '%')
             ->where(function ($query) use ($key) {
                 $query->where('contents.description', 'LIKE', '%' . $key . '%')
                     ->orWhere('contents.content', 'LIKE', '%' . $key . '%')
                     ->orWhere('contents.created_at', 'LIKE', '%' . $key . '%');
-            })
-            ->get();
+            });
+        if(isset($request->status)) $ct = $contents->where('contents.status', '=', $request->status);
+        if(isset($request->id_menu)) $ct = $contents->where('contents.id_menu', '=', $request->id_menu);
+//            ->where('contents.status', '=', $request->status)
+//            ->where('contents.id_menu', '=', $request->id_menu)
+        $ct = $contents->get();
         if ($contents) {
-            foreach ($contents as $key => $content) {
+            foreach ($ct as $key => $content) {
                 $content->status == 1 ? $content->status = "✔ Đang hiển thị" : $content->status = "<span style='color:red'>✘ Đang ẩn</span>";
                 if ($content->img) {
                     $link = "<a href='images/$content->img'><img src='images/$content->img' style='width: 100px; cursor: pointer'></a>";
