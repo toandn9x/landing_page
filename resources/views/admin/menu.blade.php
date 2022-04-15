@@ -171,7 +171,6 @@
                                     'id': id,
                                 },
                                 success : function (data){
-                                    console.log(data);
                                     if(data == "success") {
                                         toastr.success('Xóa menu thành công!');
                                         setTimeout(function(){location.reload(); }, 1000);

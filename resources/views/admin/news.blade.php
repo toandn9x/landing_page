@@ -219,7 +219,6 @@
                                     'id': id,
                                 },
                                 success: function (data) {
-                                    console.log(data);
                                     if (data == "success") {
                                         toastr.success('Xóa nội dung thành công!');
                                         setTimeout(function () {
