@@ -48,7 +48,7 @@
                                                 <select class="form-control" id="" name="id_menu">
                                                     @foreach ($menus as $menu)
                                                         <option value="{{ $menu->id }}"
-                                                                @if($menu->id == $content->id)
+                                                                @if($menu->id == $content->id_menu)
                                                                 selected
                                                                 @endif
                                                                 style="font-weight: bold!important">{{ $menu->name }}</option>
