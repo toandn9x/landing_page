@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use App\Models\User;
 use App\Models\Menus;
 use App\Models\Contents;
@@ -16,6 +17,7 @@ class AdminController extends Controller
 {
     // Author: Toandn - 11:20AM
     // link img: env('APP_URL')."/images/".$content->img;
+
     public function login()
     {
         return view('admin.login');
@@ -155,11 +157,13 @@ class AdminController extends Controller
                 <td>' . $user->status . '</td>
                 <td>' . $user->role . '</td>
                 <td>' . $user->created_at . '</td>
-                <td>
-                    <a href="admin/users/edit/' . $user->id . '"><i class="fas fa-edit"></i></a> |
-                    <a href="javascript:void(0)" onclick=ajaxDeleteUser(' . $user->id . ')><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>';
+                <td>';
+                if($user->role == 1) {
+                    $output .=
+                    '<a href="admin/users/edit/' . $user->id . '"><i class="fas fa-edit"></i></a> |
+                    <a href="javascript:void(0)" onclick=ajaxDeleteUser(' . $user->id . ')><i class="fas fa-trash"></i></a>';
+                }
+                $output .= '</td></tr>';
             }
             echo $output;
         }
@@ -257,11 +261,13 @@ class AdminController extends Controller
                 <td>' . $menu->m_order . '</td>
                 <td>' . $menu->created_at . '</td>
                 <td>' . $menu->updated_at . '</td>
-                <td>
-                    <a href="admin/menus/edit/' . $menu->id . '"><i class="fas fa-edit"></i></a> |
-                    <a href="javascript:void(0)" onclick=ajaxDeleteMenu(' . $menu->id . ')><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>';
+                <td>';
+                if(Auth::user()->role == 1) {
+                    $output .=
+                    '<a href="admin/menus/edit/' . $menu->id . '"><i class="fas fa-edit"></i></a> |
+                    <a href="javascript:void(0)" onclick=ajaxDeleteMenu(' . $menu->id . ')><i class="fas fa-trash"></i></a>';
+                }
+                $output .= '</td></tr>';
             }
             echo $output;
         }
@@ -394,11 +400,13 @@ class AdminController extends Controller
                 <td>' . $content->status . '</td>
                 <td>' . $content->created_at . '</td>
                 <td>' . $content->updated_at . '</td>
-                <td>
-                    <a href="admin/contents/edit/' . $content->id . '"><i class="fas fa-edit"></i></a> |
-                    <a href="javascript:void(0)" onclick=ajaxDeleteContent(' . $content->id . ')><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>';
+                <td>';
+                if(Auth::user()->role == 1) {
+                    $output .=
+                    '<a href="admin/contents/edit/' . $content->id . '"><i class="fas fa-edit"></i></a> |
+                    <a href="javascript:void(0)" onclick=ajaxDeleteContent(' . $content->id . ')><i class="fas fa-trash"></i></a>';
+                }
+                $output .= '</td></tr>';
             }
             echo $output;
         }

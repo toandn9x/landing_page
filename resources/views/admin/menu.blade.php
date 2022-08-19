@@ -21,9 +21,11 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="col-sm-12">
+                                    @if(Auth::user()->role == 1)
                                     <a href="{{ route('add_menu') }}" class="btn btn-info" style="margin-left: 15px">Thêm</a> |
                                     <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
                                     <a href="javascript:void(0)" class="btn btn-danger" style="" id="menu_delete">Xóa</a>
+                                    @endif
                                     <!-- SEARCH FORM -->
                                     <form class="form-inline ml-3 float-right" style="padding-top: 10px; padding-left: 0px!important">
                                         <div class="input-group input-group-sm">
@@ -71,8 +73,10 @@
                                             <td>{{ $menu->created_at }}</td>
                                             <td>{{ $menu->updated_at }}</td>
                                             <td>
+                                                @if(Auth::user()->role == 1)
                                                 <a href="{{ route('edit_menu', $menu->id) }}"><i class="fas fa-edit"></i></a> |
                                                 <a href="javascript:void(0)" onclick="ajaxDeleteMenu({{ $menu->id }})"><i class="fas fa-trash"></i></a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

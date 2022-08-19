@@ -31,9 +31,11 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="col-sm-12">
+                                    @if(Auth::user()->role == 1)
                                     <a href="{{ route('add_content') }}" class="btn btn-info" style="margin-left: 15px">Thêm</a> |
                                     <!-- <a href="#" class="btn btn-warning">Xuất excel</a> | -->
                                     <a href="javascript:void(0)" class="btn btn-danger" style="" id="content_delete">Xóa</a>
+                                    @endif
                                     <!-- SEARCH FORM -->
                                     <form class="form-inline ml-3 float-right" style="padding-top: 10px; padding-left: 0px!important">
                                         <div class="input-group input-group-sm">
@@ -99,7 +101,7 @@
                                                 @endif
                                             </td>
                                             <td>{!! $content->description !!}</td>
-                                            <td>{!! $content->content !!}</td>
+                                            <td>{!! mb_strimwidth($content->content, 0, 50, "...") !!}</td>
                                             @if ($content->status == 1)
                                                 <td>✔ Đang hiển thị</td>
                                             @else
@@ -108,11 +110,13 @@
                                             <td>{{ $content->created_at }}</td>
                                             <td>{{ $content->updated_at }}</td>
                                             <td>
+                                                @if(Auth::user()->role == 1)
                                                 <a href="{{ route('edit_content', $content->id) }}"><i
                                                             class="fas fa-edit"></i></a> |
                                                 <a href="javascript:void(0)"
                                                    onclick="ajaxDeleteContent({{ $content->id }})"><i
                                                             class="fas fa-trash"></i></a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

@@ -153,6 +153,6 @@
 @stop
 @section('script')
     <script>
-        $("ul li:nth-child(6) > a").addClass("active");
+        $("ul li:nth-child(5) > a").addClass("active");
     </script>
 @stop

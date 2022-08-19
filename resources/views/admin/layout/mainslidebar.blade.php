@@ -41,7 +41,7 @@
                 <li class="nav-item">
                     <a href="{{ route('menus') }}" class="nav-link">
                         <i class="fas fa-list"></i>
-                        <p>QL menu</p>
+                        <p>QL Danh Mục</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -50,12 +50,12 @@
                         <p>QL Nội Dung</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('news') }}" class="nav-link">
-                        <i class="fas fa-clipboard-list"></i>
-                        <p>QL tin tức</p>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a href="{{ route('news') }}" class="nav-link">--}}
+{{--                        <i class="fas fa-clipboard-list"></i>--}}
+{{--                        <p>QL tin tức</p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a href="{{ route('settings') }}" class="nav-link">
                         <i class="fas fa-cogs"></i>
